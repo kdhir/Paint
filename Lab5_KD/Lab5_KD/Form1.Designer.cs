@@ -290,6 +290,7 @@
             this.fillBox.TabIndex = 7;
             this.fillBox.Text = "Fill";
             this.fillBox.UseVisualStyleBackColor = true;
+            this.fillBox.CheckedChanged += new System.EventHandler(this.fillBox_CheckedChanged);
             // 
             // outlineBox
             // 
@@ -300,6 +301,7 @@
             this.outlineBox.TabIndex = 8;
             this.outlineBox.Text = "Outline";
             this.outlineBox.UseVisualStyleBackColor = true;
+            this.outlineBox.CheckedChanged += new System.EventHandler(this.outlineBox_CheckedChanged);
             // 
             // Form1
             // 

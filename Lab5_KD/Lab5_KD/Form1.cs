@@ -18,6 +18,9 @@ namespace Lab5_KD
         // This flag will keep track of if this is the users's first click his second
         private bool firstClick = false;
 
+        // These flags will keep track if fill or outline are selected
+        private bool willFill, willOutline = false;
+
         // These keep track of what options have been selected
         private string currDraw;
         private Pen currPen = Pens.White;
@@ -49,14 +52,15 @@ namespace Lab5_KD
 
         private void drawPanel_MouseClick(object sender, MouseEventArgs e)
         {
+            // update pen according to settings
+            currPen = new Pen(currBrush, currPenWidth);
+
             // Second Click processes, happens if firstClick is true
             if (firstClick) 
             {
                 firstClick = false; // reset first click for next object
                 pointB = new Point(e.X, e.Y);
 
-                // update pen according to settings
-                currPen = new Pen(currBrush, currPenWidth);
 
                 // Add object based on draw option
                 if (currDraw == "Line")
@@ -150,17 +154,17 @@ namespace Lab5_KD
                 currBrush = Brushes.Black;
             }
             // Red
-            else if (penColorList.SelectedIndex == 0)
+            else if (penColorList.SelectedIndex == 1)
             {
                 currBrush = Brushes.Red;
             }
             // Blue
-            else if (penColorList.SelectedIndex == 0)
+            else if (penColorList.SelectedIndex == 2)
             {
                 currBrush = Brushes.Blue;
             }
             // Green
-            else if (penColorList.SelectedIndex == 0)
+            else if (penColorList.SelectedIndex == 3)
             {
                 currBrush = Brushes.Green;
             }
@@ -169,6 +173,7 @@ namespace Lab5_KD
                 currBrush = Brushes.Black;
             }
             this.Invalidate();
+
         }
 
         private void penWidthList_SelectedIndexChanged(object sender, EventArgs e)
@@ -197,6 +202,18 @@ namespace Lab5_KD
             {
                 graphicObjects.RemoveAt(graphicObjects.Count - 1);
             }
+        }
+
+        private void fillBox_CheckedChanged(object sender, EventArgs e)
+        {
+            willFill = !willFill;
+            this.Invalidate();
+        }
+
+        private void outlineBox_CheckedChanged(object sender, EventArgs e)
+        {
+            willOutline = !willOutline;
+            this.Invalidate();
         }
     }
 }
