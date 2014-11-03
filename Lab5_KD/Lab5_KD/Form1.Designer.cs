@@ -48,6 +48,8 @@
             this.fillColorList = new System.Windows.Forms.ListBox();
             this.penColorList = new System.Windows.Forms.ListBox();
             this.drawPanel = new System.Windows.Forms.Panel();
+            this.fillBox = new System.Windows.Forms.CheckBox();
+            this.outlineBox = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -83,7 +85,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(112, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // editToolStripMenuItem
@@ -104,6 +106,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel1.Controls.Add(this.outlineBox);
+            this.panel1.Controls.Add(this.fillBox);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
@@ -277,6 +281,26 @@
             this.drawPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.drawPanel_Paint);
             this.drawPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.drawPanel_MouseClick);
             // 
+            // fillBox
+            // 
+            this.fillBox.AutoSize = true;
+            this.fillBox.Location = new System.Drawing.Point(411, 222);
+            this.fillBox.Name = "fillBox";
+            this.fillBox.Size = new System.Drawing.Size(47, 21);
+            this.fillBox.TabIndex = 7;
+            this.fillBox.Text = "Fill";
+            this.fillBox.UseVisualStyleBackColor = true;
+            // 
+            // outlineBox
+            // 
+            this.outlineBox.AutoSize = true;
+            this.outlineBox.Location = new System.Drawing.Point(411, 260);
+            this.outlineBox.Name = "outlineBox";
+            this.outlineBox.Size = new System.Drawing.Size(75, 21);
+            this.outlineBox.TabIndex = 8;
+            this.outlineBox.Text = "Outline";
+            this.outlineBox.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -321,6 +345,8 @@
         private System.Windows.Forms.RadioButton recButton;
         private System.Windows.Forms.RadioButton lineButton;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.CheckBox outlineBox;
+        private System.Windows.Forms.CheckBox fillBox;
     }
 }
 

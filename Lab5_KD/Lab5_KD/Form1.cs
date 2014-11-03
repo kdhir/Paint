@@ -66,39 +66,45 @@ namespace Lab5_KD
                 }
                 else if (currDraw == "Rectangle")
                 {
-                    int objwidth = (pointA.X - pointA.X);
-                    int objheight = (pointB.Y - pointB.X);
-                    Point correctedPoint;
+                    int rWidth = (pointB.X - pointA.X);
+                    int rHeight = (pointB.Y - pointA.Y);
+                    Point correctedPoint = pointA;
                     // if width is neg, flip x of pointB with x or pointA = correctedPoint
-                    if (objwidth < 0)
+                    if (rWidth < 0)
                     {
                         correctedPoint.X = pointB.X;
-                        correctedPoint.Y = pointA.Y;
                     }
                     // if height is neg, flip y of pointB with y or pointA = correctedPoint
-                    else if (objheight < 0)
+                    if (rHeight < 0)
                     {
-                        correctedPoint.X = pointA.X;
                         correctedPoint.Y = pointB.Y;
                     }
-                    else
-                    {
-                        correctedPoint = pointA;
-                    }
+
                     // get size of rec based on opposite corners of clicks
                     // add to arraylist to be drawn
-                    this.graphicObjects.Add(new Rectangle(currPen, correctedPoint, Math.Abs(objwidth), Math.Abs(objheight)));
+                    this.graphicObjects.Add(new Rectangle(currPen, correctedPoint, Math.Abs(rWidth), Math.Abs(rHeight)));
                 }
                 else if (currDraw == "Ellipse")
                 {
-                    int objwidth = (pointA.X - pointA.X);
-                    int objheight = (pointB.Y - pointB.X);
+                    int eWidth = (pointB.X - pointA.X);
+                    int eHeight = (pointB.Y - pointA.Y);
+                    Point correctedPoint = pointA;
+                    // if width is neg, flip x of pointB with x or pointA = correctedPoint
+                    if (eWidth < 0)
+                    {
+                        correctedPoint.X = pointB.X;
+                    }
+                    // if height is neg, flip y of pointB with y or pointA = correctedPoint
+                    if (eHeight < 0)
+                    {
+                        correctedPoint.Y = pointB.Y;
+                    }
+
+
                     // get size of ellipse based on opposite corners of clicks
                     // add to arraylist to be drawn
-                    // if either height or width is negative, flip points a and b
 
-                    this.graphicObjects.Add(new Ellipse(currPen, pointA, Math.Abs(pointB.X - pointA.X), Math.Abs(pointB.Y - pointA.Y)));
-
+                    this.graphicObjects.Add(new Ellipse(currPen, correctedPoint, Math.Abs(eWidth), Math.Abs(eHeight)));
                 }
                 else if (currDraw == "Text")
                 {
