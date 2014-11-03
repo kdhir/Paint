@@ -13,7 +13,6 @@ namespace Lab5_KD
     {
         // Parent class for every graphic object (public so it can be inherited)
         public Point position = new Point();
-        public Color fillColor;
         public Pen myPen;
 
         public MyGraphic()
@@ -46,36 +45,60 @@ namespace Lab5_KD
 
     class Rectangle : MyGraphic
     {
+        public Brush fillColor;
          public int width, height;
+         public bool willFill, willOutline;
 
-        public Rectangle(Pen penIn, Point currPos, int currWidth, int currHeight)
+         public Rectangle(Pen penIn, Point currPos, int currWidth, int currHeight, bool fill, bool outline,Brush currFillColor)
         {
             this.width = currWidth;
             this.height = currHeight;
             this.myPen = penIn;
             this.position = currPos;
+            this.willFill = fill;
+            this.willOutline = outline;
+            this.fillColor = currFillColor;
         }
 
         public override void Draw(Graphics g)
         {
-            g.DrawRectangle(myPen, position.X, position.Y, width, height);
+            if (willFill)
+            {
+                g.FillRectangle(fillColor, position.X, position.Y, width, height);
+            }
+            if (willOutline)
+            {
+                g.DrawRectangle(myPen, position.X, position.Y, width, height);
+            }
         }
     }
     class Ellipse : MyGraphic
     {
+        public Brush fillColor;
         public int width, height;
+        public bool willFill, willOutline;
 
-        public Ellipse(Pen penIn, Point currPos, int currWidth, int currHeight)
+        public Ellipse(Pen penIn, Point currPos, int currWidth, int currHeight, bool fill, bool outline,Brush currFillColor)
         {
             this.position = currPos;
             this.myPen = penIn; 
             this.width = currWidth;
             this.height = currHeight;
+            this.willFill = fill;
+            this.willOutline = outline;
+            this.fillColor = currFillColor;
         }
 
         public override void Draw(Graphics g)
         {
-            g.DrawEllipse(myPen, position.X, position.Y, width, height);
+            if (willFill)
+            {
+                g.FillEllipse(fillColor, position.X, position.Y, width, height);
+            }
+            if (willOutline)
+            {
+                g.DrawEllipse(myPen, position.X, position.Y, width, height);
+            }
         }
     }
 

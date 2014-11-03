@@ -26,6 +26,7 @@ namespace Lab5_KD
         private Pen currPen = Pens.White;
         private string currText = "";
         private Brush currBrush = Brushes.White;
+        private Brush currFill = Brushes.White;
         private int currPenWidth = 1;
 
         // The two points that determine the position of the object
@@ -35,6 +36,10 @@ namespace Lab5_KD
         {
             InitializeComponent();
             drawPanel.Refresh();
+            penColorList.SetSelected(0, true);
+            fillColorList.SetSelected(0, true);
+            penWidthList.SetSelected(0, true);
+            lineButton.Select();
         }
 
         private void drawPanel_Paint(object sender, PaintEventArgs e)
@@ -86,7 +91,7 @@ namespace Lab5_KD
 
                     // get size of rec based on opposite corners of clicks
                     // add to arraylist to be drawn
-                    this.graphicObjects.Add(new Rectangle(currPen, correctedPoint, Math.Abs(rWidth), Math.Abs(rHeight)));
+                    this.graphicObjects.Add(new Rectangle(currPen, correctedPoint, Math.Abs(rWidth), Math.Abs(rHeight),willFill,willOutline,currFill));
                 }
                 else if (currDraw == "Ellipse")
                 {
@@ -108,7 +113,7 @@ namespace Lab5_KD
                     // get size of ellipse based on opposite corners of clicks
                     // add to arraylist to be drawn
 
-                    this.graphicObjects.Add(new Ellipse(currPen, correctedPoint, Math.Abs(eWidth), Math.Abs(eHeight)));
+                    this.graphicObjects.Add(new Ellipse(currPen, correctedPoint, Math.Abs(eWidth), Math.Abs(eHeight),willFill,willOutline,currFill));
                 }
                 else if (currDraw == "Text")
                 {
@@ -147,7 +152,7 @@ namespace Lab5_KD
 
         private void penColorList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Update brush color.
+            // Update outline color.
             //Black
             if (penColorList.SelectedIndex == 0)
             {
@@ -176,6 +181,41 @@ namespace Lab5_KD
 
         }
 
+        private void fillColorList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Update fill color.
+            //White
+            if (fillColorList.SelectedIndex == 0)
+            {
+                currFill = Brushes.White;
+            }
+            // Black
+            else if (fillColorList.SelectedIndex == 1)
+            {
+                currFill = Brushes.Black;
+            }
+            // Red
+            else if (fillColorList.SelectedIndex == 2)
+            {
+                currFill = Brushes.Red;
+            }
+            // Blue
+            else if (fillColorList.SelectedIndex == 3)
+            {
+                currFill = Brushes.Blue;
+            }
+            // Green
+            else if (fillColorList.SelectedIndex == 4)
+            {
+                currFill = Brushes.Green;
+            }
+            else
+            {
+                currFill = Brushes.White;
+            }
+            this.Invalidate();
+        }
+
         private void penWidthList_SelectedIndexChanged(object sender, EventArgs e)
         {
             // width is equal to the index +1 since it start at index 0
@@ -202,6 +242,7 @@ namespace Lab5_KD
             {
                 graphicObjects.RemoveAt(graphicObjects.Count - 1);
             }
+            drawPanel.Refresh();
         }
 
         private void fillBox_CheckedChanged(object sender, EventArgs e)
@@ -215,5 +256,7 @@ namespace Lab5_KD
             willOutline = !willOutline;
             this.Invalidate();
         }
+
+
     }
 }

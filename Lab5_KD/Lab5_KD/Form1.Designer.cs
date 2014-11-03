@@ -254,6 +254,7 @@
             this.fillColorList.Name = "fillColorList";
             this.fillColorList.Size = new System.Drawing.Size(120, 100);
             this.fillColorList.TabIndex = 1;
+            this.fillColorList.SelectedIndexChanged += new System.EventHandler(this.fillColorList_SelectedIndexChanged);
             // 
             // penColorList
             // 
