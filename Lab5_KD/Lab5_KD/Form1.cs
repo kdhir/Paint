@@ -68,9 +68,26 @@ namespace Lab5_KD
                 {
                     int objwidth = (pointA.X - pointA.X);
                     int objheight = (pointB.Y - pointB.X);
+                    Point correctedPoint;
+                    // if width is neg, flip x of pointB with x or pointA = correctedPoint
+                    if (objwidth < 0)
+                    {
+                        correctedPoint.X = pointB.X;
+                        correctedPoint.Y = pointA.Y;
+                    }
+                    // if height is neg, flip y of pointB with y or pointA = correctedPoint
+                    else if (objheight < 0)
+                    {
+                        correctedPoint.X = pointA.X;
+                        correctedPoint.Y = pointB.Y;
+                    }
+                    else
+                    {
+                        correctedPoint = pointA;
+                    }
                     // get size of rec based on opposite corners of clicks
                     // add to arraylist to be drawn
-                    this.graphicObjects.Add(new Rectangle(currPen, pointA, Math.Abs(pointB.X - pointA.X), Math.Abs(pointB.Y - pointA.Y)));
+                    this.graphicObjects.Add(new Rectangle(currPen, correctedPoint, Math.Abs(objwidth), Math.Abs(objheight)));
                 }
                 else if (currDraw == "Ellipse")
                 {
