@@ -106,20 +106,26 @@ namespace Lab5_KD
     {
         public string text;
         public Brush bColor;
+        public int width, height;
 
-        public Text(string currText, Brush currBrush, Point currPos)
+        
+
+        public Text(string currText, Brush currBrush, Point currPos, int currWidth, int currHeight)
         {
             this.text = currText;
             this.bColor = currBrush;
             this.position = currPos;
+            this.width = currWidth;
+            this.height = currHeight;
         }
 
         public override void Draw(Graphics g)
         {
             //default Font
             Font font = new Font("Arial", 12, FontStyle.Regular);
-
-            g.DrawString(text, font, bColor, position);
+            
+            System.Drawing.Rectangle frame = new System.Drawing.Rectangle(position, new Size(width, height));
+            g.DrawString(text, font, bColor, frame);
         }
     }
 }

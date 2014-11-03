@@ -108,8 +108,6 @@ namespace Lab5_KD
                     {
                         correctedPoint.Y = pointB.Y;
                     }
-
-
                     // get size of ellipse based on opposite corners of clicks
                     // add to arraylist to be drawn
 
@@ -117,8 +115,21 @@ namespace Lab5_KD
                 }
                 else if (currDraw == "Text")
                 {
+                    int tWidth = (pointB.X - pointA.X);
+                    int tHeight = (pointB.Y - pointA.Y);
+                    Point correctedPoint = pointA;
+                    // if width is neg, flip x of pointB with x or pointA = correctedPoint
+                    if (tWidth < 0)
+                    {
+                        correctedPoint.X = pointB.X;
+                    }
+                    // if height is neg, flip y of pointB with y or pointA = correctedPoint
+                    if (tHeight < 0)
+                    {
+                        correctedPoint.Y = pointB.Y;
+                    }
                     // add to arraylist to be drawn
-                    this.graphicObjects.Add(new Text(currText, currBrush, pointA));
+                    this.graphicObjects.Add(new Text(currText, currBrush, correctedPoint,Math.Abs(tWidth),Math.Abs(tHeight)));
                 }
                 else
                 {
