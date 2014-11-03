@@ -257,6 +257,11 @@ namespace Lab5_KD
             this.Invalidate();
         }
 
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
 
     }
 }
